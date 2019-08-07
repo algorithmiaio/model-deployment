@@ -1,9 +1,10 @@
 import Algorithmia
 from datetime import datetime
 from git import Repo
-from os import environ, makedirs
-from shutil import copyfile, rmtree
+from os import environ
+from shutil import copyfile
 from six.moves.urllib.parse import quote_plus
+from tempfile import mkdtemp
 
 api_key = environ.get('ALGORITHMIA_MANAGEMENT_API_KEY')
 username = environ.get('ALGORITHMIA_USERNAME')
@@ -43,17 +44,16 @@ print('UPLOADING model')
 client.file(data_path+'/digits.classifier.pkl').putFile('jenkins_deploy_algorithmia/digits_classifier.pkl')
 
 print('CLONING repo')
-rmtree('temp_model_build', ignore_errors=True)
-makedirs('temp_model_build')
+tmpdir = mkdtemp()
 encoded_api_key = quote_plus(api_key)
 algo_repo = "https://{}:{}@git.algorithmia.com/git/{}.git".format(username, encoded_api_key, algo_name)
-cloned_repo = Repo.clone_from(algo_repo, 'temp_model_build')
+cloned_repo = Repo.clone_from(algo_repo, tmpdir)
 
 print('ADDING algorithm files')
 algorithm_file_name='{}.py'.format(algo_name.split('/')[1])
-copyfile('jenkins_deploy_algorithmia/requirements.txt', 'temp_model_build/requirements.txt')
+copyfile('jenkins_deploy_algorithmia/requirements.txt', tmpdir+'/requirements.txt')
 with open('jenkins_deploy_algorithmia/algo.py', 'r+') as file_in:
-    with open('temp_model_build/src/'+algorithm_file_name, 'w+') as file_out:
+    with open(tmpdir+'/src/'+algorithm_file_name, 'w+') as file_out:
         filedata = file_in.read()
         filedata = filedata.replace('data://username/demo/digits_classifier.pkl', data_path+'/digits.classifier.pkl')
         file_out.write(filedata)
