@@ -3,7 +3,10 @@ from datetime import datetime
 from git import Repo
 import os
 from shutil import copyfile
-import urllib.parse
+try:
+    from urllib.parse import urlparse
+except ImportError:
+     from urlparse import urlparse
 
 api_key = os.environ.get('ALGORITHMIA_MANAGEMENT_API_KEY')
 username = os.environ.get('ALGORITHMIA_USERNAME')
