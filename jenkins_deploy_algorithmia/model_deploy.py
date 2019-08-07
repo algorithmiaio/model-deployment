@@ -73,4 +73,4 @@ publish_result=algo.publish(
 )
 print(publish_result)
 
-print('DEPLOYED TO https://algorithmia/algorithms/'+algo_name)
+print('DEPLOYED TO https://algorithmia.com/algorithms/'+algo_name)

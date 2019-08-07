@@ -63,7 +63,7 @@ pipeline {
 ## Verify that the job runs
 
 * Run "Build Now" in Jenkins, then view the Console Output
-* The last line should read "DEPLOYED TO https://algorithmia/algorithms/username/digit_recognition_#######"
+* The last line should read "DEPLOYED TO https://algorithmia.com/algorithms/username/digit_recognition_#######"
 * Follow that URL or go to https://algorithmia.com/user and check the "My Algorithms" to test your Algorithm
 
 ## Use this project as a template
