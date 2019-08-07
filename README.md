@@ -4,7 +4,8 @@ Deploy machine learning models to Algorithmia, in any framework.
 
 ## Table of Contents
 
-* Tensorflow Text Classification & Model Deployment: [Jupyter Notebook sample](tensorflow_classify_text_deploy_algorithmia/tensorflow_classify_text_deploy_algorithmia.ipynb)
+* [Tensorflow Text Classification & Model Deployment with Jupyter Notebooks](tensorflow_classify_text_deploy_algorithmia/tensorflow_classify_text_deploy_algorithmia.ipynb)
+* [Pretrained Model Deployment with Jenkins](jenkins_deploy_algorithmia)
 
 ## See also
 

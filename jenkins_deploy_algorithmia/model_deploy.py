@@ -14,8 +14,9 @@ if not api_key:
 if not username:
     raise SystemExit('Please set the evironment variable ALGORITHMIA_USERNAME')
 
-algo_name = username+'/digit_recognition_'+datetime.now().strftime('%Y%m%d%H%M%S')
 data_path = 'data://'+username+'/digit_recognition'
+algo_name = username+'/digit_recognition_'+datetime.now().strftime('%Y%m%d%H%M%S')
+algo_template_path = 'jenkins_deploy_algorithmia/algorithm_template/'
 
 client=Algorithmia.client(api_key)
 algo = client.algo(algo_name)
@@ -41,7 +42,7 @@ if not client.dir(data_path).exists():
     client.dir(data_path).create()
 
 print('UPLOADING model')
-client.file(data_path+'/digits.classifier.pkl').putFile('jenkins_deploy_algorithmia/digits_classifier.pkl')
+client.file(data_path+'/digits.classifier.pkl').putFile(algo_template_path+'digits_classifier.pkl')
 
 print('CLONING repo')
 tmpdir = mkdtemp()
@@ -51,8 +52,8 @@ cloned_repo = Repo.clone_from(algo_repo, tmpdir)
 
 print('ADDING algorithm files')
 algorithm_file_name='{}.py'.format(algo_name.split('/')[1])
-copyfile('jenkins_deploy_algorithmia/requirements.txt', tmpdir+'/requirements.txt')
-with open('jenkins_deploy_algorithmia/algo.py', 'r+') as file_in:
+copyfile(algo_template_path+'requirements.txt', tmpdir+'/requirements.txt')
+with open(algo_template_path+'algo.py', 'r+') as file_in:
     with open(tmpdir+'/src/'+algorithm_file_name, 'w+') as file_out:
         filedata = file_in.read()
         filedata = filedata.replace('data://username/demo/digits_classifier.pkl', data_path+'/digits.classifier.pkl')
