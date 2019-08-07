@@ -46,7 +46,7 @@ print('UPLOADING model')
 client.file(data_path+'/digits.classifier.pkl').putFile('jenkins_deploy_algorithmia/digits_classifier.pkl')
 
 print('CLONING repo')
-os.makedirs('temp', exist_ok = True)
+os.makedirs('temp')
 encoded_api_key = urllib.parse.quote_plus(api_key)
 algo_repo = "https://{}:{}@git.algorithmia.com/git/{}.git".format(username, encoded_api_key, algo_name)
 cloned_repo = Repo.clone_from(algo_repo, 'temp')
