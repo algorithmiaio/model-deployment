@@ -47,7 +47,7 @@ client.file(data_path+'/digits.classifier.pkl').putFile(algo_template_path+'digi
 print('CLONING repo')
 tmpdir = mkdtemp()
 encoded_api_key = quote_plus(api_key)
-algo_repo = "https://{}:{}@git.algorithmia.com/git/{}.git".format(username, encoded_api_key, algo_name)
+algo_repo = 'https://{}:{}@git.algorithmia.com/git/{}.git'.format(username, encoded_api_key, algo_name)
 cloned_repo = Repo.clone_from(algo_repo, tmpdir)
 
 print('ADDING algorithm files')
@@ -59,7 +59,7 @@ with open(algo_template_path+'algo.py', 'r+') as file_in:
         filedata = filedata.replace('data://username/demo/digits_classifier.pkl', data_path+'/digits.classifier.pkl')
         file_out.write(filedata)
 cloned_repo.git.add(update=True)
-cloned_repo.index.commit("Add algorithm files")
+cloned_repo.index.commit('Add algorithm files')
 
 print('PUSHING repo')
 origin = cloned_repo.remote(name='origin')
@@ -72,3 +72,5 @@ publish_result=algo.publish(
     }
 )
 print(publish_result)
+
+print('DEPLOYED TO https://algorithmia/algorithms/'+algo_name)

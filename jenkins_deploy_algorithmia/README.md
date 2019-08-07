@@ -60,11 +60,11 @@ pipeline {
 * Go to https://algorithmia.com/user#credentials and create an API Key with the option "Allow this key to manage my algorithms" checked. Use this as your ALGORITHMIA_MANAGEMENT_API_KEY in your job.
 * Go to https://algorithmia.com/user and find your username (just under your full name). Use this as your ALGORITHMIA_USERNAME in your job.
 
-## Verify the job runs
+## Verify that the job runs
 
 * Run "Build Now" in Jenkins, then view the Console Output
-* It should contain a line similar to "PUBLISHING username/digit_recognition_#######"
-* Go to https://algorithmia.com/user and check the "My Algorithms" tab for a similarly named Algorithm
+* The last line should read "DEPLOYED TO https://algorithmia/algorithms/username/digit_recognition_#######"
+* Follow that URL or go to https://algorithmia.com/user and check the "My Algorithms" to test your Algorithm
 
 ## Use this project as a template
 
