@@ -36,7 +36,7 @@ python jenkins_deploy_algorithmia/model_deploy.py
 
 ### Option B: Jenkins "pipeline" project
 
-Copy [jenkins_jobs/Deploy Pretrained Model Pipeline](jenkins_jobs) into your Jenkis server's [jobs folder](https://wiki.jenkins.io/display/JENKINS/Administering+Jenkins), or create a new "pipeline" job manually with the following settings:
+Copy the [jenkins_jobs/Deploy Pretrained Model Pipeline](jenkins_jobs) into your Jenkis server's [jobs folder](https://wiki.jenkins.io/display/JENKINS/Administering+Jenkins), or create a new "pipeline" job manually with the following settings:
 
 **Advanced Project Options: Pipeline**
 ```
