@@ -1,10 +1,19 @@
 # Deploy and redeploy machine learning models to Algorithmia via Jenkins CI/CD
 
-Continuous Integration & Deployment are standard practice in the world of software development, and Machine Learning is no exception: you need a robust CI/CD workflow to ensure that your latest models are deployed efficiently and correctly into production.
+Algorithmia supports deployment and redeployment via the [the Algo Management API](https://algorithmia.com/developers/algorithm-development/algorithm-management-api), and this is easily integrated into CI/CD tools such as Jenkins, allowing your models to be deployed as soon as they are ready, and redeployed whenever an approved retrained model is available.
 
-Algorithmia supports deployment and redeployment via the [the Algo Management API](https://algorithmia.com/developers/algorithm-development/algorithm-management-api), and this is easily integrated into CI/CD tools such as Jenkins. With Algorithmia and your favorite CI/CD tool, your models are deployed as soon as they are ready, and can be instantly redeployed whenever an approved retrained model is available.
+This sample project uses a simple digit recognition model (copied from Algorithmia's [Sample Apps Repo](https://github.com/algorithmiaio/sample-apps/tree/master/algo-dev-demo/digit_recognition)), but can be modified to fit any model you wish to deploy. **We recommend working through this boilerplate example before creating your own project.**
 
-## Step 1: Setting up Jenkins to deploy to Algorithmia
+## Step 1: Prepare your Jenkins server
+
+Your Jenkins server will need access to a Python environment with the following packages preinstalled:
+* algorithmia>=1.2.0
+* gitpython>=2.1.0
+* six>=1.12.0
+
+This can be done using `pip install` in the server's default python environment; if you wish to use a specific environment, replace `python` with the appropriate path (e.g. `/usr/bin/python3`) in the **Build** stages of the Jenkins projects shown below. 
+
+## Step 2: Setting up Jenkins to deploy to Algorithmia
 
 ### Option A: Jenkins "freestyle" project
 
@@ -59,18 +68,18 @@ pipeline {
 }
 ```
 
-## Step 2: Configure your credentials
+## Step 3: Configure your credentials
 
 * Go to https://algorithmia.com/user#credentials and create an API Key with the option "Allow this key to manage my algorithms" checked. Use this as your ALGORITHMIA_MANAGEMENT_API_KEY in your job.
 * Go to https://algorithmia.com/user and find your username (just under your full name). Use this as your ALGORITHMIA_USERNAME in your job.
 
-## Step 3: Verify that the job runs
+## Step 4: Verify that the job runs
 
 * Run "Build Now" in Jenkins, then view the Console Output
 * The last line should read "DEPLOYED TO https://algorithmia.com/algorithms/username/digit_recognition_#######"
 * Follow that URL or go to https://algorithmia.com/user and check the "My Algorithms" to test your Algorithm
 
-## Step 4: Use this project as a template
+## Step 5: Use this project as a template
 
 * Modify [algorithm_template](algorithm_template) to contain the code needed for your own Algorithm, and [model_deploy.py](model_deploy.py) to reference these files
 
