@@ -2,7 +2,7 @@
 
 Continuous Integration & Deployment are standard practice in the world of software development, and Machine Learning is no exception: you need a robust CI/CD workflow to ensure that your latest models are deployed efficiently and correctly into production.
 
-Algorithmia supports deployment and redeployment via the [the Algo Management API]({{site.baseurl}}/algorithm-development/algorithm-management-api), and this is easily integrated into CI/CD tools such as Jenkins. With Algorithmia and your favorite CI/CD tool, your models are deployed as soon as they are ready, and can be instantly redeployed whenever an approved retrained model is available.
+Algorithmia supports deployment and redeployment via the [the Algo Management API](https://algorithmia.com/developers/algorithm-development/algorithm-management-api), and this is easily integrated into CI/CD tools such as Jenkins. With Algorithmia and your favorite CI/CD tool, your models are deployed as soon as they are ready, and can be instantly redeployed whenever an approved retrained model is available.
 
 ## Step 1: Setting up Jenkins to deploy to Algorithmia
 
