@@ -1,8 +1,12 @@
-# Model Deployment with Jenkins
+# Deploy and redeploy machine learning models to Algorithmia via Jenkins CI/CD
 
-Deploy a machine learning models to Algorithmia via Jenkins CI/CD
+Continuous Integration & Deployment are standard practice in the world of software development, and Machine Learning is no exception: you need a robust CI/CD workflow to ensure that your latest models are deployed efficiently and correctly into production.
 
-## Add Job: Jenkins "freestyle" project
+Algorithmia supports deployment and redeployment via the [the Algo Management API]({{site.baseurl}}/algorithm-development/algorithm-management-api), and this is easily integrated into CI/CD tools such as Jenkins. With Algorithmia and your favorite CI/CD tool, your models are deployed as soon as they are ready, and can be instantly redeployed whenever an approved retrained model is available.
+
+## Step 1: Setting up Jenkins to deploy to Algorithmia
+
+### Option A: Jenkins "freestyle" project
 
 Copy [jenkins_jobs/Deploy Pretrained Model Freestyle](jenkins_jobs) into your Jenkis server's [jobs folder](https://wiki.jenkins.io/display/JENKINS/Administering+Jenkins), or create a new "freestyle" project manually with the following settings:
 
@@ -21,7 +25,7 @@ export PYTHONUNBUFFERED=1
 python jenkins_deploy_algorithmia/model_deploy.py
 ```
 
-## Add Job: Jenkins "pipeline" project
+### Option B: Jenkins "pipeline" project
 
 Copy [jenkins_jobs/Deploy Pretrained Model Pipeline](jenkins_jobs) into your Jenkis server's [jobs folder](https://wiki.jenkins.io/display/JENKINS/Administering+Jenkins), or create a new "pipeline" job manually with the following settings:
 
@@ -55,18 +59,18 @@ pipeline {
 }
 ```
 
-## Configure your credentials
+## Step 2: Configure your credentials
 
 * Go to https://algorithmia.com/user#credentials and create an API Key with the option "Allow this key to manage my algorithms" checked. Use this as your ALGORITHMIA_MANAGEMENT_API_KEY in your job.
 * Go to https://algorithmia.com/user and find your username (just under your full name). Use this as your ALGORITHMIA_USERNAME in your job.
 
-## Verify that the job runs
+## Step 3: Verify that the job runs
 
 * Run "Build Now" in Jenkins, then view the Console Output
 * The last line should read "DEPLOYED TO https://algorithmia.com/algorithms/username/digit_recognition_#######"
 * Follow that URL or go to https://algorithmia.com/user and check the "My Algorithms" to test your Algorithm
 
-## Use this project as a template
+## Step 4: Use this project as a template
 
 * Modify [algorithm_template](algorithm_template) to contain the code needed for your own Algorithm, and [model_deploy.py](model_deploy.py) to reference these files
 
