@@ -93,6 +93,6 @@ However, if you already have an Algorithm published and wish to redeploy it unde
 
 2. Redeploy the entire Algorithm: if you do this, the version number of the Algorithm will increment, and calls to the latest version will immediately see new results. For this option, replace [model_deploy.py](model_deploy.py) with [model_redeploy_full.py](model_redeploy_full.py) in your Jenkins job, OR edit [model_deploy.py](model_deploy.py) to ignore errors during the CREATE step, so it continues running even if the Algorithm already exists.
 
-## Optional: (re)deploying models with another CI/CD tool or from pure Python
+# Optional: (re)deploying models with another CI/CD tool or from pure Python
 
 For those using another CI/CD tool, or who simply wish to deploy from a simple pure-Python script, the Python scripts used in this repo can be used in any Python-capable environment; they are not Jenkins-specific. Simply copy and modify the model_*.py files from this repo, then and modify them to point to your own Algorithm.
