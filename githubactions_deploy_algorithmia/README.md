@@ -69,21 +69,21 @@ jobs:
 
 Let's look through this file to understand what's going on.
 
-The "on" section defines what will trigger the Workflow: any push of files under the "githubactions_deploy_algorithmia" directory, as well as changes to the workflow configuration itself. If your file/folder names differ, alter this section.
+The "on" section defines what will trigger the Workflow: any push of files under the **githubactions_deploy_algorithmia** directory, as well as changes to the workflow configuration itself. If your file/folder names differ, alter this section.
 
-The "build" configuration specifies that this will be executed inside a container running Ubuntu (though any python-capable OS should work), that only one build should be executed at a time (**only** alter this if you aren't overwriting the same Algorithm each time), and that it needs Python 3.6 available (the scripts used here have been tested on 2.7, 3.6, and 3.7).
+The "build" configuration specifies that this will be executed inside a container running Ubuntu (though any Python-capable OS should work), that only one build should be executed at a time (**only** alter this if you aren't overwriting the same Algorithm each time), and that it needs Python 3.6 available (the scripts used here have been tested on 2.7, 3.6, and 3.7).
 
 Under "steps", we first set up Python, then proceed to the actual "Deploy Model" step. It uses the two secrets we configured in our repository to set similarly-named environment variables, plus some env vars necessary to make the script we're about to run play nice with its transient environment. Lastly, we make sure pip is up to date, install the modules our deploy script will need, and kick off [model_deploy.py](model_deploy.py).
 
 Take a minute to read through [model_deploy.py](model_deploy.py) -- the comments will give you an idea of what's going on, but you can also read through the docs for the [Algorithm Management API](https://algorithmia.com/developers/algorithm-development/algorithm-management-api) and the raw [API Spec](https://docs.algorithmia.com/?python#algorithm-management-api) for more details.
 
-If desirted, you can add other triggers or alterations according to the [Workflow Syntax for GitHub Actions](https://help.github.com/en/articles/workflow-syntax-for-github-actions).
+If desired, you can add other triggers or alterations according to the [Workflow Syntax for GitHub Actions](https://help.github.com/en/articles/workflow-syntax-for-github-actions).
 
 ## Step 5: Verify that the job runs
 
-Since this job is triggered by changes to the workflow config file itself, it should have already begun a run when you committed the deploy_model.yml -- if not, just re-commit the file, or push anything under the githubactions_deploy_algorithmia directory. 
+Since this job is triggered by changes to the workflow config file itself, it should have already begun a run when you committed the **deploy_model.yml** -- if not, just re-commit the file, or push anything under the **githubactions_deploy_algorithmia** directory. 
 
-Now, click on the "Actions" tab in your repo and look for a section called "Deploy Model on Algorithmia". You should see a Workflow Run for the "master" branch: click on it, then expand the "Deploy model" section of the output. The last line should read "DEPLOYED TO https://algorithmia.com/algorithms/***/digit_recognition_#######", indicating that your Algorithm has been deployed! Follow that URL (replacing "***" with your username) or go to https://algorithmia.com/user and check the "My Algorithms" to test your Algorithm.
+Now, click on the "Actions" tab in your repo and look for a section called "Deploy Model on Algorithmia". You should see a Workflow Run for the "master" branch: click on it, then expand the "Deploy model" section of the output. The last line should read `DEPLOYED TO https://algorithmia.com/algorithms/***/digit_recognition_#######`, indicating that your Algorithm has been deployed! Follow that URL (replacing "***" with your username) or go to https://algorithmia.com/user and check the "My Algorithms" to test your Algorithm.
 
 ![Deployment log](images/deploy_log.png)
 
