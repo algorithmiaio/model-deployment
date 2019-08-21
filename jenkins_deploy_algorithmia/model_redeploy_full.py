@@ -14,6 +14,11 @@ ALGO_NAME = 'digit_recognition_final'
 # pick any collection name you prefer; it will be created for you in https://algorithmia.com/data/hosted/
 COLLECTION_NAME = 'digit_recognition'
 
+# config your publish settings as per https://docs.algorithmia.com/#publish-an-algorithm
+ALGORITHM_VERSION_INFO = {
+    'sample_input': 'https://github.com/algorithmiaio/sample-apps/blob/master/algo-dev-demo/digit_recognition/images/digit_1.png?raw=true'
+}
+
 # path within this repo where the algo.py, requirements.txt, and model file are located
 ALGO_TEMPLATE_PATH = 'jenkins_deploy_algorithmia/algorithm_template/'
 
@@ -71,12 +76,12 @@ origin.push()
 print('PUBLISHING '+algo_full_name)
 sleep(15)
 try:
-    results = algo.publish()
+    results = algo.publish(version_info=ALGORITHM_VERSION_INFO)
 except:
     print('RETRYING: if this occurs repeatedly, increase the sleep() time before the PUBLISH step to allow for compilation time')
     try:
         sleep(60)
-        results = algo.publish()
+        results = algo.publish(version_info=ALGORITHM_VERSION_INFO)
     except Exception as x:
         raise SystemExit('ERROR: unable to publish Algorithm: code will not compile, or compile takes too long\n{}'.format(x))
 print(results)

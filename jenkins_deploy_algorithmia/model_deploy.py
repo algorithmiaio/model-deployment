@@ -104,12 +104,12 @@ origin.push()
 print('PUBLISHING '+algo_full_name)
 sleep(15)
 try:
-    results = algo.publish()
+    results = algo.publish(version_info=ALGORITHM_VERSION_INFO)
 except:
     print('RETRYING: if this occurs repeatedly, increase the sleep() time before the PUBLISH step to allow for compilation time')
     try:
         sleep(60)
-        results = algo.publish()
+        results = algo.publish(version_info=ALGORITHM_VERSION_INFO)
     except Exception as x:
         raise SystemExit('ERROR: unable to publish Algorithm: code will not compile, or compile takes too long\n{}'.format(x))
 print(results)
