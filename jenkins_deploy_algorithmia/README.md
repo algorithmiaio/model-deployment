@@ -46,7 +46,7 @@ pipeline {
         skipStagesAfterUnstable()
     }
     environment {
-        ALGORITHMIA_MANAGEMENT_API_KEY = '[OBTAIN FROM https://algorithmia.com/user#credentials]'
+        ALGORITHMIA_MANAGEMENT_API_KEY = '[OBTAIN FROM https://algorithmia.com/user#credentials (KEY MUST HAVE PERMISSION TO MANAGE ALGORITHMS)]'
         ALGORITHMIA_USERNAME = '[OBTAIN FROM https://algorithmia.com/user]'
         GIT_CONFIG_NOSYSTEM = '1'
         PYTHONUNBUFFERED = '1'

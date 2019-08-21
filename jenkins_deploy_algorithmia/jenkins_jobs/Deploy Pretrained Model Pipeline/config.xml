@@ -21,7 +21,7 @@
         skipStagesAfterUnstable()
     }
     environment {
-        ALGORITHMIA_MANAGEMENT_API_KEY = &apos;[OBTAIN FROM https://algorithmia.com/user#credentials]&apos;
+        ALGORITHMIA_MANAGEMENT_API_KEY = &apos;[OBTAIN FROM https://algorithmia.com/user#credentials (KEY MUST HAVE PERMISSION TO MANAGE ALGORITHMS)]&apos;
         ALGORITHMIA_USERNAME = &apos;[OBTAIN FROM https://algorithmia.com/user]&apos;
         GIT_CONFIG_NOSYSTEM = &apos;1&apos;
         PYTHONUNBUFFERED = &apos;1&apos;
