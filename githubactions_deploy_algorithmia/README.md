@@ -24,7 +24,7 @@ Click the "Settings" tab at the top of your repository, and pick the "Secrets" s
 
 ## Step 4: Set up a Workflow on your GitHub Repo
 
-Now click on the "Actions" tab at the top of your repository. If you see a screen entitled "Get Started With Github Actions", click the button under "Python package". Otherwise, click "Add a new workflow" on the left.
+Now click on the "Actions" tab at the top of your repository. If you see a screen entitled "Get Started With Github Actions", click the button under "Simple workflow". Otherwise, click "Add a new workflow" on the left.
 
 ![Add a new workflow](images/get_started_with_gh_actions.png)
 
