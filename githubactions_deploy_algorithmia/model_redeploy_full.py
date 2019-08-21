@@ -1,5 +1,4 @@
 import Algorithmia
-from datetime import datetime
 from git import Repo
 from os import environ
 from shutil import copyfile
@@ -9,26 +8,11 @@ from time import sleep
 
 ## CONFIGURABLE SETTINGS:
 
-# using a rotating algo name for demo, but this can be any name you prefer; it will be created under https://algorithmia.com/algorithms/[YOUR_USERNAME]
-ALGO_NAME = 'digit_recognition_'+datetime.now().strftime('%Y%m%d%H%M%S')
+# pick a name for this Algorithm; it will be created under https://algorithmia.com/algorithms/[YOUR_USERNAME]
+ALGO_NAME = 'digit_recognition_final'
 
 # pick any collection name you prefer; it will be created for you in https://algorithmia.com/data/hosted/
 COLLECTION_NAME = 'digit_recognition'
-
-# config your Algorithm details/settings as per https://docs.algorithmia.com/#create-an-algorithm
-ALGORITHM_DETAILS = {
-    'label': 'Digit Recognition',
-    'tagline': 'Simple digit recognition model, for demo purposes only',
-    'summary': 'Demo only: Provide an image URL as input, and this model will attempt to identify the number shown.',
-}
-ALGORITHM_SETTINGS = {
-    'language': 'python3-1',
-    'source_visibility': 'closed',
-    'license': 'apl',
-    'network_access': 'full',
-    'pipeline_enabled': True,
-    'environment': 'cpu'
-}
 
 # config your publish settings as per https://docs.algorithmia.com/#publish-an-algorithm
 ALGORITHM_VERSION_INFO = {
@@ -62,23 +46,11 @@ data_path = 'data://'+username+'/'+COLLECTION_NAME
 client = Algorithmia.client(api_key)
 algo = client.algo(algo_full_name)
 
-# create Hosted Data collection
-print('CREATING '+data_path)
-if not client.dir(data_path).exists():
-    client.dir(data_path).create()
-
 # upload the model file
 print('UPLOADING model to '+data_path+'/'+MODEL_FILE)
 client.file(data_path+'/'+MODEL_FILE).putFile(ALGO_TEMPLATE_PATH+MODEL_FILE)
 
-# create the Algorithm
-print('CREATING '+algo_full_name)
-try:
-    print(algo.create(details=ALGORITHM_DETAILS, settings=ALGORITHM_SETTINGS))
-except Exception as x:
-    raise SystemExit('ERROR: cannot create {}: if the Algorithm already exists and you wish to overwrite it, remove/ignore this step\n{}'.format(algo_full_name, x))
-
-# git clone the created algorithm's repo into a temp directory
+# git clone the algorithm's repo into a temp directory
 print('CLONING repo')
 tmpdir = mkdtemp()
 encoded_api_key = quote_plus(api_key)
