@@ -23,8 +23,8 @@ jobs:
         python-version: ${{ matrix.python-version }}
     - name: Deploy model
       env:
-        ALGORITHMIA_MANAGEMENT_API_KEY: "[OBTAIN FROM https://algorithmia.com/user#credentials]"
-        ALGORITHMIA_USERNAME: "[OBTAIN FROM https://algorithmia.com/user]"
+        ALGORITHMIA_MANAGEMENT_API_KEY: ${{ secrets['ALGORITHMIA_MANAGEMENT_API_KEY'] }} #OBTAIN FROM https://algorithmia.com/user#credentials
+        ALGORITHMIA_USERNAME: ${{ secrets['ALGORITHMIA_USERNAME'] }} #OBTAIN FROM https://algorithmia.com/user"
         GIT_CONFIG_NOSYSTEM: 1
         PYTHONUNBUFFERED: 1
       run: |
