@@ -1,4 +1,4 @@
-name: Python package
+name: Deploy Model on Algorithmia
 
 on: 
   push:
