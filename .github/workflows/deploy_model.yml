@@ -23,11 +23,11 @@ jobs:
         python-version: ${{ matrix.python-version }}
     - name: Deploy model
       env:
-        ALGORITHMIA_MANAGEMENT_API_KEY: ${{ secrets['ALGORITHMIA_MANAGEMENT_API_KEY'] }} #OBTAIN FROM https://algorithmia.com/user#credentials
+        ALGORITHMIA_MANAGEMENT_API_KEY: ${{ secrets['ALGORITHMIA_MANAGEMENT_API_KEY'] }} #OBTAIN FROM https://algorithmia.com/user#credentials (KEY MUST HAVE PERMISSION TO MANAGE ALGORITHMS)
         ALGORITHMIA_USERNAME: ${{ secrets['ALGORITHMIA_USERNAME'] }} #OBTAIN FROM https://algorithmia.com/user"
         GIT_CONFIG_NOSYSTEM: 1
         PYTHONUNBUFFERED: 1
       run: |
         python -m pip install --upgrade pip
         pip install algorithmia>=1.2.0 gitpython>=2.1.0 six>=1.12.0
-        python githubactions_deploy_algorithmia/model_redeploy_full.py
+        python githubactions_deploy_algorithmia/model_deploy.py

@@ -52,7 +52,7 @@ def UPDATE_ALGORITHM_TEMPLATE(file_contents):
 api_key = environ.get('ALGORITHMIA_MANAGEMENT_API_KEY')
 username = environ.get('ALGORITHMIA_USERNAME')
 if not api_key:
-    raise SystemExit('Please set the environment variable ALGORITHMIA_MANAGEMENT_API_KEY')
+    raise SystemExit('Please set the environment variable ALGORITHMIA_MANAGEMENT_API_KEY (key must have permission to manage algorithms)')
 if not username:
     raise SystemExit('Please set the environment variable ALGORITHMIA_USERNAME')
 
