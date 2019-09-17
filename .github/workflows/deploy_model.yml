@@ -4,6 +4,7 @@ on:
   push:
     paths:
     - githubactions_deploy_algorithmia/*
+    - githubactions_deploy_algorithmia/*/*
     - .github/workflows/deploy_model.yml
 
 jobs:
