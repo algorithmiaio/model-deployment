@@ -1,7 +1,6 @@
 import Algorithmia
 from tensorflow import keras
 import numpy as np
-import pickle
 import hashlib
 
 def sha256_checksum(filename, block_size=65536):
