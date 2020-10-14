@@ -1,0 +1,6 @@
+[submodule "githubactions_modeldeployment/github_algo"]
+	path = githubactions_modeldeployment/github_algo
+	url = https://github.com/algorithmiaio/githubactions-modeldeployment-demo-githubalgo
+[submodule "githubactions_modeldeployment/algorithmia_algo"]
+	path = githubactions_modeldeployment/algorithmia_algo
+	url = https://github.com/algorithmiaio/githubactions-modeldeployment-demo-algorithmiaalgo.git
