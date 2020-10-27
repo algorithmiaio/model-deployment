@@ -1,0 +1,48 @@
+<?xml version='1.1' encoding='UTF-8'?>
+<flow-definition plugin="workflow-job@2.33">
+  <actions>
+    <org.jenkinsci.plugins.pipeline.modeldefinition.actions.DeclarativeJobAction plugin="pipeline-model-definition@1.3.9"/>
+    <org.jenkinsci.plugins.pipeline.modeldefinition.actions.DeclarativeJobPropertyTrackerAction plugin="pipeline-model-definition@1.3.9">
+      <jobProperties/>
+      <triggers/>
+      <parameters/>
+      <options>
+        <string>skipStagesAfterUnstable</string>
+      </options>
+    </org.jenkinsci.plugins.pipeline.modeldefinition.actions.DeclarativeJobPropertyTrackerAction>
+  </actions>
+  <description></description>
+  <keepDependencies>false</keepDependencies>
+  <properties/>
+  <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.73">
+    <script>pipeline {
+    agent any
+    options {
+        skipStagesAfterUnstable()
+    }
+    environment {
+        ALGORITHMIA_MANAGEMENT_API_KEY = &apos;[OBTAIN FROM https://algorithmia.com/user#credentials (KEY MUST HAVE PERMISSION TO MANAGE ALGORITHMS)]&apos;
+        ALGORITHMIA_USERNAME = &apos;[OBTAIN FROM https://algorithmia.com/user]&apos;
+        GIT_CONFIG_NOSYSTEM = &apos;1&apos;
+        PYTHONUNBUFFERED = &apos;1&apos;
+    }
+    stages {
+        stage(&apos;Build&apos;) {
+            steps {
+                checkout([$class: &apos;GitSCM&apos;, branches: [[name: &apos;*/master&apos;]],
+     userRemoteConfigs: [[url: &apos;https://github.com/algorithmiaio/model-deployment.git&apos;]]])
+            }
+        }
+        stage(&apos;Deploy&apos;) {
+            steps {
+                // use a python environment with: algorithmia>=1.2.0, gitpython>=2.1.0, six>=1.12.0
+                sh &apos;python jenkins_deploy_algorithmia/model_deploy.py&apos;
+            }
+        }
+    }
+}</script>
+    <sandbox>true</sandbox>
+  </definition>
+  <triggers/>
+  <disabled>false</disabled>
+</flow-definition>
