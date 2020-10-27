@@ -4,10 +4,10 @@ Deploy machine learning models to Algorithmia, in any framework.
 
 ## Table of Contents
 
-* [Using Algorithmia Github Action for Continuous Deployment](https://github.com/algorithmiaio/algorithmia-modeldeployment-action) of an ML model and serving layer from a Jupyter notebook repo 
+* [Using Algorithmia Github Action for Continuous Deployment](https://github.com/algorithmiaio/algorithmia-modeldeployment-action) of an ML model and its serving layer
   * [to an Algorithmia algorithm backed by Algorithmia](https://github.com/algorithmiaio/githubactions-modeldeployment-demo-algorithmiaalgo)
   * [to an Algorithmia algorithm backed by Github](https://github.com/algorithmiaio/githubactions-modeldeployment-demo-githubalgo)
-* [Deploying an ML model and serving layer via Jenkins CI/CD](jenkins_deploy_algorithmia)
+* [Deploying an ML model and its serving layer via Jenkins CI/CD](jenkins_deploy_algorithmia)
 * [Simple Publish of an Algorithm pre-created via the Web Interface](simple_publish_model/simple_publish_model.ipynb)
 * [Tensorflow Text Classification & Model Deployment with Jupyter Notebooks](tensorflow_classify_text_deploy_algorithmia/tensorflow_classify_text_deploy_algorithmia.ipynb)
 * [Train an XGBoost Model on Jupyter notebook & Deploy to Algorithmia](xgboost_notebook_to_algorithmia)
